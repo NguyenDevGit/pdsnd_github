@@ -25,7 +25,6 @@ def get_filters():
             print("Not an appropriate city! Please choose again")
         else:
             break
-        
     # get user input for filter the data by month, day, both or not at all
     while True:
         filter_by = input('Would you like to filter the data by month, day, both or not at all? Type "none" for no time filter\n').lower()
@@ -96,9 +95,7 @@ def load_data(city, month, day):
         # filter by day of week to create the new dataframe
         df = df.query("day_of_week == @day")
 
-
     return df
-
 
 def time_stats(df):
     """Displays statistics on the most frequent times of travel."""
@@ -108,7 +105,6 @@ def time_stats(df):
 
     # convert the Start Time column to datetime
     df['Start Time'] = pd.to_datetime(df['Start Time'])
-
     
     # extract month from the Start Time column to create a month column
     df['month'] = df['Start Time'].dt.month_name()
@@ -134,23 +130,19 @@ def time_stats(df):
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
-
 def station_stats(df):
     """Displays statistics on the most popular stations and trip."""
 
     print('\nCalculating The Most Popular Stations and Trip...\n')
     start_time = time.time()
 
-
     # display most commonly used start station
     popular_start_station = df['Start Station'].mode()[0]
     print('Most common start station:', popular_start_station)
 
-
     # display most commonly used end station
     popular_end_station = df['End Station'].mode()[0]
     print('Most common end station:', popular_end_station)
-
 
     # display most frequent combination of start station and end station trip
     df['Trip Stations'] = df['Start Station'].str.cat(df[['End Station']].values,sep=' -> ')
@@ -159,7 +151,6 @@ def station_stats(df):
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
-
 
 def trip_duration_stats(df):
     """Displays statistics on the total and average trip duration."""
@@ -173,10 +164,8 @@ def trip_duration_stats(df):
     # display mean travel time
     print('Average travel time:', df['Trip Duration'].mean())
 
-
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
-
 
 def user_stats(df):
     """Displays statistics on bikeshare users."""
